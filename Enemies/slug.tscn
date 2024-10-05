@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://d1h2oh3ex1ewl"]
 
 [ext_resource type="Texture2D" uid="uid://b5nyewp0hfl0e" path="res://player.png" id="1_dot2q"]
-[ext_resource type="Script" path="res://slug.gd" id="1_i5km4"]
+[ext_resource type="Script" path="res://Enemies/slug.gd" id="1_i5km4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fwp45"]
 atlas = ExtResource("1_dot2q")
@@ -60,4 +60,4 @@ script = ExtResource("1_i5km4")
 position = Vector2(2, -2)
 sprite_frames = SubResource("SpriteFrames_8bm1v")
 animation = &"walk_right"
-frame_progress = 0.994607
+frame_progress = 0.91643

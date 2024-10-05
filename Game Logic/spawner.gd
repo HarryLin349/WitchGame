@@ -20,8 +20,8 @@ func pick_random_enemy() -> int:
 	return EnemyType.ANT  # Fallback, in case something goes wrong
 
 
-@onready var antScene = preload("res://ant.tscn")
-@onready var slugScene = preload("res://slug.tscn")
+@onready var antScene = preload("res://Enemies/ant.tscn")
+@onready var slugScene = preload("res://Enemies/slug.tscn")
 
 var animated_sprite
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://4iu3mdvkpscm"]
 
-[ext_resource type="Script" path="res://GlobalStats.gd" id="1_8peqg"]
+[ext_resource type="Script" path="res://Game Logic/GlobalStats.gd" id="1_8peqg"]
 [ext_resource type="Texture2D" uid="uid://4bsgtgabuxfv" path="res://Assets/floor.PNG" id="2_pbn36"]
-[ext_resource type="PackedScene" uid="uid://dxcvi0xq8haw4" path="res://ant.tscn" id="3_5ikuh"]
-[ext_resource type="Script" path="res://slug.gd" id="4_j436t"]
-[ext_resource type="Script" path="res://spawner.gd" id="4_owgup"]
-[ext_resource type="Script" path="res://StatsUI.gd" id="7_2a7tk"]
+[ext_resource type="PackedScene" uid="uid://dxcvi0xq8haw4" path="res://Enemies/ant.tscn" id="3_5ikuh"]
+[ext_resource type="Script" path="res://Enemies/slug.gd" id="4_j436t"]
+[ext_resource type="Script" path="res://Game Logic/spawner.gd" id="4_owgup"]
+[ext_resource type="Script" path="res://Game Logic/StatsUI.gd" id="7_2a7tk"]
 [ext_resource type="Texture2D" uid="uid://d2504p3orca8u" path="res://Assets/grass.PNG" id="7_k03s2"]
 
 [node name="world" type="Node2D"]

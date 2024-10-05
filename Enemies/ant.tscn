@@ -1,6 +1,6 @@
 [gd_scene load_steps=40 format=3 uid="uid://dxcvi0xq8haw4"]
 
-[ext_resource type="Script" path="res://ant.gd" id="1_yyqik"]
+[ext_resource type="Script" path="res://Enemies/ant.gd" id="1_yyqik"]
 [ext_resource type="Texture2D" uid="uid://b5nyewp0hfl0e" path="res://player.png" id="2_cvuh5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0g7ww"]

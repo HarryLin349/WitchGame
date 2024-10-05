@@ -1,9 +1,12 @@
 extends CharacterBody2D
 
+class_name Enemy
+
 var health: int
 var damage: int
 var speed: int
 var animated_sprite: AnimatedSprite2D
+
 
 #
 #func _init(_health: int, _damage: int, _speed: int):
@@ -37,7 +40,7 @@ func take_damage(amount: int):
 
 
 func spawnAnts():
-	var antScene = preload("res://ant.tscn")
+	var antScene = preload("res://Enemies/ant.tscn")
 	var enemyInstance = antScene.instance()
 	enemyInstance.position = Vector2(0, 0)
 	add_child(enemyInstance)

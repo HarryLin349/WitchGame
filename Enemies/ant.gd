@@ -1,4 +1,4 @@
-extends "res://enemy.gd"
+extends Enemy
 
 func _ready():
 	health = 1

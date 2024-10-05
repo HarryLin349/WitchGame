@@ -1,14 +1,15 @@
-extends "res://enemy.gd"
+extends Enemy
+
 
 var time_elapsed: float = 0.0
 var min_speed: float = 0
 var max_speed: float = 10
-var speed_duration: float = 3  # The time for one full oscillation (1 second)
+var speed_duration: float = 3 # The time for one full oscillation (1 second)
 
 func _ready():
 	health = 2
 	damage = 2
-	speed = 5  # Initial speed
+	speed = 5 # Initial speed
 	animated_sprite = $AnimatedSprite2D
 
 # Override the _process function to update speed based on sine wave
