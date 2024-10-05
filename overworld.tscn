@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://4iu3mdvkpscm"]
+[gd_scene load_steps=9 format=3 uid="uid://4iu3mdvkpscm"]
 
 [ext_resource type="Texture2D" uid="uid://c21q1l3tt4wo2" path="res://forest_.png" id="1_qk6qt"]
 [ext_resource type="Texture2D" uid="uid://b1mainy64wpas" path="res://cave_.png" id="2_8yr2y"]
 [ext_resource type="PackedScene" uid="uid://dxcvi0xq8haw4" path="res://ant.tscn" id="3_5ikuh"]
+[ext_resource type="Script" path="res://slug.gd" id="4_j436t"]
 [ext_resource type="Script" path="res://spawner.gd" id="4_owgup"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5uff0"]
@@ -311,12 +312,17 @@ layer_0/tile_data = PackedInt32Array(-327686, 131072, 5, -262150, 131072, 6, -19
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-2, 0)
-zoom = Vector2(0.8, 0.8)
 
 [node name="ant" parent="." instance=ExtResource("3_5ikuh")]
 position = Vector2(87, -22)
 
-[node name="Spawner" type="Node" parent="."]
+[node name="slug" parent="." instance=ExtResource("3_5ikuh")]
+position = Vector2(87, -22)
+script = ExtResource("4_j436t")
+
+[node name="Timer" type="Timer" parent="slug"]
+
+[node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("4_owgup")
 
 [node name="Timer" type="Timer" parent="Spawner"]
