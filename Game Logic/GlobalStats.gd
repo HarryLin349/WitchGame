@@ -21,6 +21,11 @@ func decrease_hp(amount):
 	HP -= amount
 	if HP < 0:
 		HP = 0  # Prevent HP from going below 0
+		
+func decrease_mana(amount):
+	Mana -= amount
+	if HP < 0:
+		HP = 0  # Prevent HP from going below 0
 
 func reset_stats():
 	HP = 100

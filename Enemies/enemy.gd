@@ -25,8 +25,8 @@ func move_towards_center(delta):
 	var direction = (screen_center - global_position).normalized()
 	velocity = direction * speed
 	if (animated_sprite != null):
-		animated_sprite.play("walk_right")
-		animated_sprite.flip_h = direction.x < 0
+		animated_sprite.play("walk_left")
+		animated_sprite.flip_h = direction.x > 0
 	move_and_slide()
 
 	if global_position.distance_to(screen_center) < 10:

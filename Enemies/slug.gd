@@ -3,8 +3,8 @@ extends Enemy
 
 var time_elapsed: float = 0.0
 var min_speed: float = 0
-var max_speed: float = 10
-var speed_duration: float = 3 # The time for one full oscillation (1 second)
+var max_speed: float = 20
+var speed_duration: float = 6 # The time for one full oscillation (1 second)
 
 func _ready():
 	health = 2

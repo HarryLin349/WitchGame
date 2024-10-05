@@ -1,0 +1,18 @@
+extends Node2D
+
+@onready var beeScene = preload("res://Summons/Bee.tscn")
+
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		# Check if the left mouse button was clicked and if you have enough mana
+		if event.pressed and GlobalStats.Mana >= Bee.summonCost:
+			spawn_bee(event.position)
+			GlobalStats.Mana -= Bee.summonCost  # Deduct mana when a bee is summoned
+		else:
+			print("Not enough mana!")
+	
+func spawn_bee(position: Vector2):
+	# Instantiate the bee and set its position to the mouse click location
+	var bee_instance = beeScene.instantiate()
+	bee_instance.position = position
+	add_child(bee_instance)

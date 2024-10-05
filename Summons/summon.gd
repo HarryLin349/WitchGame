@@ -3,7 +3,7 @@ extends CharacterBody2D
 var health: int
 var damage: int
 var speed: int
-var summonCost: int
+static var summonCost: int
 var duration: float
 var timeElapsed: float = 0.0
 var animated_sprite: AnimatedSprite2D
