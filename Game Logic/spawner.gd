@@ -4,8 +4,8 @@ enum EnemyType {ANT, SLUG}
 
 # Dictionary with creatures and their probabilities
 var enemy_dict = {
-	EnemyType.ANT: 70,  # 70% chance for ant
-	EnemyType.SLUG: 30  # 30% chance for slug
+	EnemyType.ANT: 70, # 70% chance for ant
+	EnemyType.SLUG: 30 # 30% chance for slug
 }
 
 func pick_random_enemy() -> int:
@@ -17,7 +17,7 @@ func pick_random_enemy() -> int:
 		if random_value < accumulated_weight:
 			return enemy_type
 	
-	return EnemyType.ANT  # Fallback, in case something goes wrong
+	return EnemyType.ANT # Fallback, in case something goes wrong
 
 
 @onready var antScene = preload("res://Enemies/ant.tscn")
@@ -49,11 +49,10 @@ func _on_timer_timeout() -> void:
 	var random_enemy = pick_random_enemy()
 	match random_enemy:
 		EnemyType.ANT:
-			var numAnts = 2 if randf() < 0.5 else 3
-			spawnEnemy(antScene.instantiate(), Vector2(spawnX, spawnY), 3, 0.8)
+			var numAnts = 1 if randf() < 0.5 else 2
+			spawnEnemy(antScene.instantiate(), Vector2(spawnX, spawnY), numAnts, 1.2)
 		EnemyType.SLUG:
 			spawnEnemy(slugScene.instantiate(), Vector2(spawnX, spawnY), 1, 0.8)
-
 
 
 	spawnEnemy(enemyInstance, Vector2(spawnX, spawnY), 1, 0.8)
