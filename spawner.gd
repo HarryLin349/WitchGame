@@ -31,3 +31,11 @@ func _on_timer_timeout() -> void:
 	# add instance to the scene
 	add_child(enemyInstance)
 	pass
+
+func spawnAnts(spawnPosition: Vector2, amount: int) -> void:
+	# spawn amount ants with 1 second between
+	for i in range(amount):
+		var enemyInstance = antScene.instance()
+		enemyInstance.position = spawnPosition
+		add_child(enemyInstance)
+		await (get_tree().create_timer(1.0), "timeout"

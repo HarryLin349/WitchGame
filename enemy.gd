@@ -34,3 +34,10 @@ func take_damage(amount: int):
 	health -= amount
 	if health <= 0:
 		queue_free() # Remove the enemy if health reaches 0
+
+
+func spawnAnts():
+	var antScene = preload("res://ant.tscn")
+	var enemyInstance = antScene.instance()
+	enemyInstance.position = Vector2(0, 0)
+	add_child(enemyInstance)
