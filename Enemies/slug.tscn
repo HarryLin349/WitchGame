@@ -18,21 +18,24 @@ region = Rect2(128, 0, 64, 64)
 [sub_resource type="SpriteFrames" id="SpriteFrames_8bm1v"]
 animations = [{
 "frames": [{
-"duration": 10.0,
+"duration": 5.5,
 "texture": SubResource("AtlasTexture_u4cyo")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kk75m")
 }, {
-"duration": 4.0,
+"duration": 6.5,
 "texture": SubResource("AtlasTexture_pm4i4")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kk75m")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_u4cyo")
 }],
 "loop": true,
 "name": &"walk_left",
-"speed": 3.0
+"speed": 2.0
 }]
 
 [node name="Slug" type="CharacterBody2D"]
@@ -42,5 +45,4 @@ script = ExtResource("1_i5km4")
 position = Vector2(2, -2)
 sprite_frames = SubResource("SpriteFrames_8bm1v")
 animation = &"walk_left"
-frame = 2
-frame_progress = 0.56196
+frame_progress = 0.0494686
