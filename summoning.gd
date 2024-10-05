@@ -6,8 +6,9 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		# Check if the left mouse button was clicked and if you have enough mana
 		if event.pressed and GlobalStats.Mana >= Bee.summonCost:
-			spawn_bee(event.position)
-			GlobalStats.Mana -= Bee.summonCost  # Deduct mana when a bee is summoned
+			var world_position = get_global_mouse_position()
+			spawn_bee(world_position)
+			GlobalStats.decrease_mana(Bee.summonCost)  # Deduct mana when a bee is summoned
 		else:
 			print("Not enough mana!")
 	

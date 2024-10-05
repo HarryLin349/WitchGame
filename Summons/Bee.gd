@@ -1,4 +1,4 @@
-extends "res://Summons/summon.gd"
+extends Summon
 
 class_name Bee
 
@@ -6,9 +6,10 @@ class_name Bee
 func _ready():
 	health = 100
 	damage = 1
-	speed = 0
+	speed = 10
 	summonCost = 5
 	duration = 10.0  # Lasts for 5 seconds
+	animated_sprite = $AnimatedSprite2D
 
 # Override movement behavior (optional)
 func _process(delta):

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Summon
+
 var health: int
 var damage: int
 var speed: int
@@ -19,6 +21,9 @@ var animated_sprite: AnimatedSprite2D
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# count time elapsed, if it exceeds duration, remove the summon
+	if (animated_sprite != null):
+		animated_sprite.play("walk_left")
+
 	timeElapsed += delta
 	if timeElapsed > duration:
 		queue_free()
