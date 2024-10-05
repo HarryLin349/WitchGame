@@ -3,7 +3,7 @@ extends CharacterBody2D
 var health: int
 var damage: int
 var speed: int
-var animated_sprite : AnimatedSprite2D
+var animated_sprite: AnimatedSprite2D
 
 #
 #func _init(_health: int, _damage: int, _speed: int):
@@ -27,9 +27,10 @@ func move_towards_center(delta):
 	move_and_slide()
 
 	if global_position.distance_to(screen_center) < 10:
-		queue_free()  # Remove the node when it reaches the center
+		GlobalStats.decrease_hp(damage)
+		queue_free() # Remove the node when it reaches the center
 
 func take_damage(amount: int):
 	health -= amount
 	if health <= 0:
-		queue_free()  # Remove the enemy if health reaches 0
+		queue_free() # Remove the enemy if health reaches 0
