@@ -23,6 +23,7 @@ func _process(delta):
 	move_towards_center(delta)
 
 func move_towards_center(delta):
+	# refactor in the future, move collision logic out (hurtboxes/hitboxes instead)
 	var screen_center = Vector2(0, 0)
 	var direction = (screen_center - global_position).normalized()
 	velocity = direction * speed
@@ -42,6 +43,30 @@ func move_towards_center(delta):
 		elif collided is Player:
 			attackPlayer(collided)
 
+func move_rand_towards_center(delta, random_angle: float):
+	# this should be moved to slug eventually once the collision logic is
+	# separate from 
+	var screen_center = Vector2(0, 0)
+	var direction = (screen_center - global_position).normalized()
+	direction = direction.rotated(random_angle)
+	velocity = direction * speed
+	if (animated_sprite != null):
+		animated_sprite.play("walk_left")
+		animated_sprite.flip_h = direction.x > 0
+
+	if global_position.distance_to(screen_center) < 10:
+		GlobalStats.decrease_hp(damage)
+		queue_free() # Remove the node when it reaches the center
+
+	var collision = move_and_slide()
+	if collision:
+		var collided = get_last_slide_collision().get_collider()
+		if collided is Summon:
+			attackSummon(collided)
+		elif collided is Player:
+			attackPlayer(collided)
+
+			
 func attackSummon(summon: Summon) -> void:
 	if (currentCooldown <= 0):
 		summon.take_damage(damage)
@@ -53,9 +78,7 @@ func attackPlayer(player: Player) -> void:
 		currentCooldown = attackCooldown
 		
 
-
 func flash_white() -> void:
-	print("flash")
 	# Set the AnimatedSprite2D to white
 	$AnimatedSprite2D.modulate.a = 0.2
 	# Wait 0.2 seconds then set it back to normal

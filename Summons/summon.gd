@@ -31,6 +31,9 @@ func _process(delta):
 	timeElapsed += delta
 	if timeElapsed > duration:
 		queue_free()
+		
+	if ($TimeBar):
+		$TimeBar.update_time(duration - timeElapsed, duration)
 	pass
 
 func take_damage(amount: int):
@@ -41,9 +44,9 @@ func take_damage(amount: int):
 	if health <= 0:
 		print("I died!")
 		queue_free() # Remove the enemy if health reaches 0
+	
 
 func flash_white() -> void:
-	print("flash")
 	# Set the AnimatedSprite2D to white
 	$AnimatedSprite2D.modulate.a = 0.2
 	# Wait 0.2 seconds then set it back to normal
@@ -55,7 +58,6 @@ func flash_white() -> void:
 	#$AnimatedSprite2D.modulate.a = 1
 
 
-	
 func go_to_nearest_enemy():
 	var closestEnemy = find_nearest_enemy()
 	var direction = Vector2.ZERO
