@@ -7,7 +7,7 @@ func _ready():
 	speed = 0
 	summonCost = 5
 	animated_sprite = $AnimatedSprite2D
-	duration = 10.0  # Lasts for 10 seconds
+	duration = 15.0  # Lasts for 10 seconds
 
 # Override movement behavior (optional)
 func _process(delta):

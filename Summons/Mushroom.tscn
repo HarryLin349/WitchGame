@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://Summons/Mushroom.gd" id="1_tdb3g"]
 [ext_resource type="PackedScene" uid="uid://dnn0romvgbk0b" path="res://TimeBar.tscn" id="3_qq42o"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_duvt7"]
-radius = 42.107
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vgn3"]
+size = Vector2(68, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r7fan"]
 atlas = ExtResource("1_6scfy")
@@ -56,14 +56,15 @@ script = ExtResource("1_tdb3g")
 [node name="DamageArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-shape = SubResource("CircleShape2D_duvt7")
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_8vgn3")
 
 [node name="ColorRect" type="ColorRect" parent="DamageArea"]
-offset_left = -42.0
-offset_top = -42.0
-offset_right = 42.0
-offset_bottom = 42.0
-color = Color(0.415686, 0.996078, 0.890196, 0.203922)
+offset_left = -33.0
+offset_top = -35.0
+offset_right = 35.0
+offset_bottom = 35.0
+color = Color(0.375579, 1, 0.898172, 0.0745098)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_28qq7")
