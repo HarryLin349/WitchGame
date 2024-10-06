@@ -7,7 +7,8 @@ var max_speed: float = 15
 var speed_duration: float = 8 # The time for one full oscillation\
 
 func _ready():
-	health = 8
+	health = 6
+	maxHealth = 8
 	damage = 5
 	speed = 5 # Initial speed
 	attackCooldown = 0.5
@@ -18,6 +19,9 @@ func _ready():
 func _process(delta):
 	# Accumulate time
 	time_elapsed += delta
+	if time_elapsed > speed_duration:
+		health += 2
+		time_elapsed = 0
 
 	# Adjust the speed using a sine wave: sin(2 * PI * (t / duration)) oscillates between -1 and 1
 	var sine_value = cos(2 * PI * (time_elapsed / speed_duration))

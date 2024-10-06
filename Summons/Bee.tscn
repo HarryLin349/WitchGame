@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ce8j46gvp27da"]
+[gd_scene load_steps=9 format=3 uid="uid://ce8j46gvp27da"]
 
 [ext_resource type="Texture2D" uid="uid://c2w2f7ug3okom" path="res://Assets/bee.png" id="1_hkqgk"]
 [ext_resource type="Script" path="res://Summons/Bee.gd" id="1_nhkgo"]
+[ext_resource type="PackedScene" uid="uid://bjk54byq3grku" path="res://HealthBar.tscn" id="3_phtjp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_07js6"]
 atlas = ExtResource("1_hkqgk")
@@ -51,3 +52,9 @@ animation = &"walk_left"
 position = Vector2(-2, 10)
 rotation = 4.71239
 shape = SubResource("CapsuleShape2D_vwp0t")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_phtjp")]
+offset_left = -11.0
+offset_top = -9.0
+offset_right = -11.0
+offset_bottom = -9.0
