@@ -66,8 +66,7 @@ func spawnEnemy(enemy: Node, spawnPosition: Vector2, amount: int = 1, delay: flo
 	for i in range(amount):
 		#var enemyInstance = enemy.instance()
 		enemy.position = spawnPosition
-		var parent = get_parent()
-		parent.add_child(enemy)
+		add_child(enemy)
 		await get_tree().create_timer(delay).timeout
 
 #func spawnSlugs(spawnPosition: Vector2, amount: int)-> void:

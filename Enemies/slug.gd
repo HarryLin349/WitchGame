@@ -7,9 +7,11 @@ var max_speed: float = 15
 var speed_duration: float = 8 # The time for one full oscillation\
 
 func _ready():
-	health = 2
-	damage = 2
+	health = 8
+	damage = 5
 	speed = 5 # Initial speed
+	attackCooldown = 1
+	currentCooldown = 1
 	animated_sprite = $AnimatedSprite2D
 	
 # Override the _process function to update speed based on sine wave

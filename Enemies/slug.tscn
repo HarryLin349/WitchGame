@@ -39,6 +39,7 @@ animations = [{
 }]
 
 [node name="Slug" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_i5km4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -46,3 +47,6 @@ position = Vector2(2, -2)
 sprite_frames = SubResource("SpriteFrames_8bm1v")
 animation = &"walk_left"
 frame_progress = 0.0688091
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-26, 1, -26, -4, -31, -16, -16, -19, -11, -8, -8, -4, 30, 0, 32, 18, -13, 19, -28, 6)

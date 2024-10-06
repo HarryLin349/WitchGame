@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxcvi0xq8haw4"]
+[gd_scene load_steps=8 format=3 uid="uid://dxcvi0xq8haw4"]
 
 [ext_resource type="Script" path="res://Enemies/ant.gd" id="1_yyqik"]
 [ext_resource type="Texture2D" uid="uid://bpbi57qm2hfgn" path="res://Assets/ant2.png" id="2_4jmwy"]
@@ -35,7 +35,10 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2mcni"]
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_yyqik")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -43,3 +46,8 @@ position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_8buwj")
 animation = &"walk_left"
 frame_progress = 0.591366
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 11)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2mcni")

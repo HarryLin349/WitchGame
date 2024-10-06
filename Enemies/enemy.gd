@@ -3,17 +3,13 @@ extends CharacterBody2D
 class_name Enemy
 
 var health: int
+var maxHealth: int
 var damage: int
 var speed: int
+var attackCooldown: float
+var currentCooldown: float
 var animated_sprite: AnimatedSprite2D
 
-
-#
-#func _init(_health: int, _damage: int, _speed: int):
-	#health = _health
-	#damage = _damage
-	#speed = _speed
-	#animated_sprite = $AnimatedSprite2D
 
 func _ready():
 	print("hi!")
@@ -22,6 +18,9 @@ func _ready():
 
 # Default movement (for the ant or any enemy that follows the same behavior)
 func _process(delta):
+	if currentCooldown > 0:
+		currentCooldown -= delta
+
 	move_towards_center(delta)
 
 func move_towards_center(delta):
@@ -31,20 +30,24 @@ func move_towards_center(delta):
 	if (animated_sprite != null):
 		animated_sprite.play("walk_left")
 		animated_sprite.flip_h = direction.x > 0
-	move_and_slide()
 
 	if global_position.distance_to(screen_center) < 10:
 		GlobalStats.decrease_hp(damage)
 		queue_free() # Remove the node when it reaches the center
 
+	var collision = move_and_slide()
+	if collision:
+		var collided = get_last_slide_collision().get_collider()
+		print(collided)
+		if collided is Summon:
+			attackSummon(collided)
+
+func attackSummon(summon: Summon) -> void:
+	if (currentCooldown <= 0):
+		summon.take_damage(damage)
+		currentCooldown = attackCooldown
+		
 func take_damage(amount: int):
 	health -= amount
 	if health <= 0:
 		queue_free() # Remove the enemy if health reaches 0
-
-
-func spawnAnts():
-	var antScene = preload("res://Enemies/ant.tscn")
-	var enemyInstance = antScene.instance()
-	enemyInstance.position = Vector2(0, 0)
-	add_child(enemyInstance)

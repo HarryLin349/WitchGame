@@ -7,19 +7,21 @@
 [ext_resource type="Texture2D" uid="uid://d2504p3orca8u" path="res://Assets/grass.PNG" id="7_k03s2"]
 
 [node name="world" type="Node2D"]
-script = ExtResource("1_1m0hf")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("2_pbn36")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Spawner" type="Node2D" parent="."]
+[node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("4_owgup")
 
-[node name="Timer" type="Timer" parent="Spawner"]
+[node name="Timer" type="Timer" parent="Enemies"]
 wait_time = 2.5
 autostart = true
+
+[node name="Summons" type="Node2D" parent="."]
+script = ExtResource("1_1m0hf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("7_2a7tk")
@@ -36,4 +38,4 @@ offset_bottom = 43.0
 [node name="Grass" type="Sprite2D" parent="."]
 texture = ExtResource("7_k03s2")
 
-[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="Enemies/Timer" to="Enemies" method="_on_timer_timeout"]
