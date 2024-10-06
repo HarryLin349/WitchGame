@@ -10,8 +10,8 @@ func _ready():
 	health = 8
 	damage = 5
 	speed = 5 # Initial speed
-	attackCooldown = 1
-	currentCooldown = 1
+	attackCooldown = 0.5
+	currentCooldown = 0.5
 	animated_sprite = $AnimatedSprite2D
 	
 # Override the _process function to update speed based on sine wave

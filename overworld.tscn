@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://4iu3mdvkpscm"]
+[gd_scene load_steps=17 format=3 uid="uid://4iu3mdvkpscm"]
 
 [ext_resource type="Script" path="res://summoning.gd" id="1_1m0hf"]
 [ext_resource type="Texture2D" uid="uid://4bsgtgabuxfv" path="res://Assets/floor.PNG" id="2_pbn36"]
 [ext_resource type="Script" path="res://Game Logic/spawner.gd" id="4_owgup"]
+[ext_resource type="Script" path="res://player.gd" id="6_fhdkd"]
 [ext_resource type="Texture2D" uid="uid://d2os3b1p124qb" path="res://Assets/Witch.png" id="6_vxrn5"]
 [ext_resource type="Script" path="res://Game Logic/StatsUI.gd" id="7_2a7tk"]
 [ext_resource type="Texture2D" uid="uid://d2504p3orca8u" path="res://Assets/grass.PNG" id="7_k03s2"]
@@ -95,6 +96,7 @@ texture = ExtResource("7_k03s2")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_layer = 2
+script = ExtResource("6_fhdkd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 position = Vector2(-14, -11)

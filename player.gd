@@ -1,22 +1,37 @@
 extends CharacterBody2D
 
+class_name Player
+
 # Define the speed of the character
-var speed = 100
+var health: int = 200
+var maxHealth: int = 200
+var damage: int = 1
+var attackCooldown: float = 0.1
+var currentCooldown: float = 0.1
 
 
 
 func _process(delta):
 	# Get the screen's center point (viewport center)
-	var screen_center = Vector2(0, 0)
-
-	# Calculate the direction vector from the current position to the center
-	var direction = (screen_center - global_position).normalized()
-
-	# Move the character towards the center
-	velocity = direction * speed
-
-	# Move and slide the character (since you're using CharacterBody2D)
-	move_and_slide()
-	if global_position.distance_to(screen_center) < 10:
-		queue_free()  # Remove the node from the scene
-`	
+	if currentCooldown > 0:
+		currentCooldown -= delta
+	velocity = Vector2.ZERO
+	var previous_position = position
+	var collision = move_and_slide()
+	if collision:
+		print("collided!")
+		var collided = get_last_slide_collision().get_collider()
+		if collided is Enemy:
+			attackEnemy(collided)
+		position = previous_position
+	
+func attackEnemy(enemy: Enemy) -> void:
+	if (currentCooldown <= 0):
+		enemy.take_damage(damage)
+		currentCooldown = attackCooldown
+			
+func take_damage(amount: int):
+	GlobalStats.decrease_hp(amount)
+	if health <= 0:
+		queue_free() # Remove the enemy if health reaches 0
+		# END GAME HERE

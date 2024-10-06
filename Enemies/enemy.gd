@@ -40,11 +40,19 @@ func move_towards_center(delta):
 		var collided = get_last_slide_collision().get_collider()
 		if collided is Summon:
 			attackSummon(collided)
+		elif collided is Player:
+			attackPlayer(collided)
 
 func attackSummon(summon: Summon) -> void:
 	if (currentCooldown <= 0):
 		summon.take_damage(damage)
 		currentCooldown = attackCooldown
+		
+func attackPlayer(player: Player) -> void:
+	if (currentCooldown <= 0):
+		player.take_damage(damage)
+		currentCooldown = attackCooldown
+		
 		
 func take_damage(amount: int):
 	health -= amount
