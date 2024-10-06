@@ -105,4 +105,16 @@ offset_bottom = 43.0
 [node name="Grass" type="Sprite2D" parent="."]
 texture = ExtResource("7_k03s2")
 
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(-14, -11)
+sprite_frames = SubResource("SpriteFrames_gdxsc")
+frame_progress = 0.963878
+script = ExtResource("7_m36jt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_wwplh")
+
 [connection signal="timeout" from="Enemies/Timer" to="Enemies" method="_on_timer_timeout"]
