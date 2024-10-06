@@ -10,7 +10,6 @@ var attackCooldown: float = 0.1
 var currentCooldown: float = 0.1
 
 
-
 func _process(delta):
 	# Get the screen's center point (viewport center)
 	if currentCooldown > 0:
@@ -19,7 +18,6 @@ func _process(delta):
 	var previous_position = position
 	var collision = move_and_slide()
 	if collision:
-		print("collided!")
 		var collided = get_last_slide_collision().get_collider()
 		if collided is Enemy:
 			attackEnemy(collided)

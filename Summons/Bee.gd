@@ -5,7 +5,7 @@ class_name Bee
 # Bee-specific summon properties
 func _ready():
 	health = 4
-	damage = 3
+	damage = 1
 	speed = 50
 	summonCost = 5
 	attackCooldown = 0.5

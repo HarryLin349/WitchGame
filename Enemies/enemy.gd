@@ -56,5 +56,7 @@ func attackPlayer(player: Player) -> void:
 		
 func take_damage(amount: int):
 	health -= amount
+	if ($HealthBar):
+		$HealthBar.update_health(health, maxHealth)
 	if health <= 0:
 		queue_free() # Remove the enemy if health reaches 0

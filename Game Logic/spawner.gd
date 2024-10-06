@@ -54,7 +54,6 @@ func _on_timer_timeout() -> void:
 		EnemyType.SLUG:
 			spawnEnemy(slugScene.instantiate(), Vector2(spawnX, spawnY), 1, 0.8)
 
-
 	spawnEnemy(enemyInstance, Vector2(spawnX, spawnY), 1, 0.8)
 
 	enemyInstance.position = Vector2(spawnX, spawnY)

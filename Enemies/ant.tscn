@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxcvi0xq8haw4"]
+[gd_scene load_steps=9 format=3 uid="uid://dxcvi0xq8haw4"]
 
 [ext_resource type="Script" path="res://Enemies/ant.gd" id="1_yyqik"]
 [ext_resource type="Texture2D" uid="uid://bpbi57qm2hfgn" path="res://Assets/ant2.png" id="2_4jmwy"]
+[ext_resource type="PackedScene" uid="uid://bjk54byq3grku" path="res://HealthBar.tscn" id="3_d5wvv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a3r80"]
 atlas = ExtResource("2_4jmwy")
@@ -51,3 +52,9 @@ frame_progress = 0.591366
 position = Vector2(1, 11)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2mcni")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_d5wvv")]
+offset_left = -7.0
+offset_top = 3.0
+offset_right = -7.0
+offset_bottom = 3.0

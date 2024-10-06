@@ -1,7 +1,7 @@
 extends Enemy
 
 func _ready():
-	health = 3
+	health = 2
 	damage = 1
 	speed = 100
 	attackCooldown = 0.25
