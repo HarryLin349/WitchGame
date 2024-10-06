@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Summon
 
 var health: int
-var maxHealth : int
+var maxHealth: int
 var damage: int
 var attackCooldown: float
 var currentCooldown: float
@@ -12,6 +12,7 @@ static var summonCost: int
 var duration: float
 var timeElapsed: float = 0.0
 var animated_sprite: AnimatedSprite2D
+var animPlayer: AnimationPlayer
 
 func _ready():
 	print("tree", get_tree_string_pretty())
@@ -33,14 +34,28 @@ func _process(delta):
 	pass
 
 func take_damage(amount: int):
-	print("HP", health, "-", amount, "=", health - amount)
 	health -= amount
+	flash_white()
 	if ($HealthBar):
 		$HealthBar.update_health(health, maxHealth)
 	if health <= 0:
 		print("I died!")
 		queue_free() # Remove the enemy if health reaches 0
 
+func flash_white() -> void:
+	print("flash")
+	# Set the AnimatedSprite2D to white
+	$AnimatedSprite2D.modulate.a = 0.2
+	# Wait 0.2 seconds then set it back to normal
+	await get_tree().create_timer(0.1).timeout
+	$AnimatedSprite2D.modulate.a = 1
+	#await get_tree().create_timer(0.05).timeout
+	#$AnimatedSprite2D.modulate.a = 0.2
+	#await get_tree().create_timer(0.05).timeout
+	#$AnimatedSprite2D.modulate.a = 1
+
+
+	
 func go_to_nearest_enemy():
 	var closestEnemy = find_nearest_enemy()
 	var direction = Vector2.ZERO

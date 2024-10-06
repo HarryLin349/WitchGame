@@ -1,8 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://ce8j46gvp27da"]
+[gd_scene load_steps=14 format=3 uid="uid://ce8j46gvp27da"]
 
 [ext_resource type="Texture2D" uid="uid://c2w2f7ug3okom" path="res://Assets/bee.png" id="1_hkqgk"]
 [ext_resource type="Script" path="res://Summons/Bee.gd" id="1_nhkgo"]
+[ext_resource type="Shader" uid="uid://bjroa37tmq8kl" path="res://Summons/hitflash.tres" id="2_xhqsi"]
 [ext_resource type="PackedScene" uid="uid://bjk54byq3grku" path="res://HealthBar.tscn" id="3_phtjp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kr2mq"]
+shader = ExtResource("2_xhqsi")
+shader_parameter/enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_07js6"]
 atlas = ExtResource("1_hkqgk")
@@ -40,11 +46,49 @@ animations = [{
 radius = 6.0
 height = 20.0
 
+[sub_resource type="Animation" id="Animation_k2ydo"]
+resource_name = "hitflash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+
+[sub_resource type="Animation" id="Animation_e3axi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gj0i1"]
+_data = {
+"RESET": SubResource("Animation_e3axi"),
+"hitflash": SubResource("Animation_k2ydo")
+}
+
 [node name="Bee" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_nhkgo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_kr2mq")
 sprite_frames = SubResource("SpriteFrames_q2j4x")
 animation = &"walk_left"
 
@@ -58,3 +102,8 @@ offset_left = -11.0
 offset_top = -9.0
 offset_right = -11.0
 offset_bottom = -9.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gj0i1")
+}

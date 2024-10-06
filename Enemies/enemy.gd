@@ -12,7 +12,6 @@ var animated_sprite: AnimatedSprite2D
 
 
 func _ready():
-	print("hi!")
 	add_to_group("enemies")
 	print(get_tree().get_nodes_in_group("enemies").size())
 
@@ -53,8 +52,18 @@ func attackPlayer(player: Player) -> void:
 		player.take_damage(damage)
 		currentCooldown = attackCooldown
 		
-		
+
+
+func flash_white() -> void:
+	print("flash")
+	# Set the AnimatedSprite2D to white
+	$AnimatedSprite2D.modulate.a = 0.2
+	# Wait 0.2 seconds then set it back to normal
+	await get_tree().create_timer(0.1).timeout
+	$AnimatedSprite2D.modulate.a = 1
+	
 func take_damage(amount: int):
+	flash_white()
 	health -= amount
 	if ($HealthBar):
 		$HealthBar.update_health(health, maxHealth)
