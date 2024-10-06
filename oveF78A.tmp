@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://4iu3mdvkpscm"]
+
+[ext_resource type="Script" path="res://summoning.gd" id="1_1m0hf"]
+[ext_resource type="Texture2D" uid="uid://4bsgtgabuxfv" path="res://Assets/floor.PNG" id="2_pbn36"]
+[ext_resource type="Script" path="res://Game Logic/spawner.gd" id="4_owgup"]
+[ext_resource type="Script" path="res://Game Logic/StatsUI.gd" id="7_2a7tk"]
+[ext_resource type="Texture2D" uid="uid://d2504p3orca8u" path="res://Assets/grass.PNG" id="7_k03s2"]
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_1m0hf")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_pbn36")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("4_owgup")
+
+[node name="Timer" type="Timer" parent="Spawner"]
+wait_time = 2.5
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("7_2a7tk")
+
+[node name="HPLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ManaLabel" type="Label" parent="CanvasLayer"]
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 43.0
+
+[node name="Grass" type="Sprite2D" parent="."]
+texture = ExtResource("7_k03s2")
+
+[node name="Bee" type="CharacterBody2D" parent="."]
+
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]

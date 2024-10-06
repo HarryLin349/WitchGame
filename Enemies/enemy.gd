@@ -15,6 +15,10 @@ var animated_sprite: AnimatedSprite2D
 	#speed = _speed
 	#animated_sprite = $AnimatedSprite2D
 
+func _ready():
+	print("hi!")
+	add_to_group("enemies")
+	print(get_tree().get_nodes_in_group("enemies").size())
 
 # Default movement (for the ant or any enemy that follows the same behavior)
 func _process(delta):
