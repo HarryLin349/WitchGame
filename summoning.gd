@@ -10,7 +10,7 @@ func _input(event):
 			var world_position = get_global_mouse_position()
 			spawn_bee(world_position) if randf() < 0.5 else spawn_mushroom(world_position)
 			#spawn_mushroom(world_position)
-			GlobalStats.decrease_mana(Bee.summonCost)  # Deduct mana when a bee is summoned
+			GlobalStats.decrease_mana(Bee.summonCost) # Deduct mana when a bee is summoned
 		else:
 			print("Not enough mana!")
 	

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1h2oh3ex1ewl"]
+[gd_scene load_steps=10 format=3 uid="uid://d1h2oh3ex1ewl"]
 
 [ext_resource type="Script" path="res://Enemies/slug.gd" id="1_i5km4"]
 [ext_resource type="Texture2D" uid="uid://dbaqlhpqt18n1" path="res://Assets/slug.png" id="2_s7a3u"]
+[ext_resource type="PackedScene" uid="uid://bjk54byq3grku" path="res://HealthBar.tscn" id="3_wi3an"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u4cyo"]
 atlas = ExtResource("2_s7a3u")
@@ -38,6 +39,14 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nw7q7"]
+radius = 7.0
+height = 34.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fi5je"]
+radius = 8.0
+height = 22.0
+
 [node name="Slug" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_i5km4")
@@ -48,5 +57,17 @@ sprite_frames = SubResource("SpriteFrames_8bm1v")
 animation = &"walk_left"
 frame_progress = 0.0688091
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-26, 1, -26, -4, -31, -16, -16, -19, -11, -8, -8, -4, 30, 0, 32, 18, -13, 19, -28, 6)
+[node name="HealthBar" parent="." instance=ExtResource("3_wi3an")]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = -8.0
+offset_bottom = -8.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_nw7q7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-18, -4)
+shape = SubResource("CapsuleShape2D_fi5je")

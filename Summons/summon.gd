@@ -35,6 +35,8 @@ func _process(delta):
 func take_damage(amount: int):
 	print("HP", health, "-", amount, "=", health - amount)
 	health -= amount
+	if ($HealthBar):
+		$HealthBar.update_health(health, maxHealth)
 	if health <= 0:
 		print("I died!")
 		queue_free() # Remove the enemy if health reaches 0
