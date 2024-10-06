@@ -30,6 +30,9 @@ func _process(delta):
 	timeElapsed += delta
 	if timeElapsed > duration:
 		queue_free()
+		
+	if ($TimeBar):
+		$TimeBar.update_time(duration - timeElapsed, duration)
 	pass
 
 func take_damage(amount: int):
@@ -40,6 +43,7 @@ func take_damage(amount: int):
 	if health <= 0:
 		print("I died!")
 		queue_free() # Remove the enemy if health reaches 0
+	
 
 func go_to_nearest_enemy():
 	var closestEnemy = find_nearest_enemy()
