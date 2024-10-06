@@ -36,6 +36,4 @@ offset_bottom = 43.0
 [node name="Grass" type="Sprite2D" parent="."]
 texture = ExtResource("7_k03s2")
 
-[node name="Bee" type="CharacterBody2D" parent="."]
-
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]

@@ -10,13 +10,6 @@ var duration: float
 var timeElapsed: float = 0.0
 var animated_sprite: AnimatedSprite2D
 
-#func _init(_health: int, _damage: int, _speed: int):
-	#health = _health
-	#damage = _damage
-	#speed = _speed
-	#animated_sprite = $AnimatedSprite2D
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-
 func _ready():
 	print("tree", get_tree_string_pretty())
 
@@ -28,28 +21,6 @@ func _process(delta):
 	velocity = direction * speed
 	"""
 	
-	# Finding the closest enemy
-	var closest_enemy = null
-	var closest_distance = INF  # Initialize to a large number
-	var direction = Vector2(0,0)
-	for enemy in get_tree().get_nodes_in_group("enemies"):
-		print("found enemy!", enemy.global_position)
-		var distance = global_position.distance_to(enemy.global_position)
-		if distance < closest_distance:
-			closest_distance = distance
-			closest_enemy = enemy
-			# If a closest enemy is found, home in on it
-	if closest_enemy:
-		direction = (closest_enemy.global_position - global_position).normalized()
-		velocity = direction * speed
-	else:
-		# If no enemy is found, you can keep the bee stationary or add other behavior
-		velocity = Vector2.ZERO
-	
-	if (animated_sprite != null):
-		animated_sprite.play("walk_left")
-		animated_sprite.flip_h = direction.x > 0
-
 	timeElapsed += delta
 	if timeElapsed > duration:
 		queue_free()
@@ -63,5 +34,36 @@ func take_damage(amount: int):
 	if health <= 0:
 		queue_free() # Remove the enemy if health reaches 0
 
+func go_to_nearest_enemy():
+	var closestEnemy = find_nearest_enemy()
+	var direction = Vector2.ZERO
+	if closestEnemy:
+		direction = (closestEnemy.global_position - global_position).normalized()
+		velocity = direction * speed
+	else:
+		# If no enemy is found, you can keep the bee stationary or add other behavior
+		velocity = Vector2.ZERO
+	if (animated_sprite != null):
+		animated_sprite.play("walk_left")
+		animated_sprite.flip_h = direction.x > 0
+
+	
+func find_nearest_enemy() -> Enemy:
+	var nearest_enemy: Enemy = null
+	var shortest_distance = INF
+	
+	# Get all children of the "world" node
+	var world = get_parent()
+	
+	for child in world.get_children():
+		print("child:", child)
+		# Check if the child is an Enemy (check by class type or node group)
+		if child is Enemy:
+			var distance = position.distance_to(child.position)
+			if distance < shortest_distance:
+				shortest_distance = distance
+				nearest_enemy = child
+
+	return nearest_enemy
 
 # Called when the node enters the scene tree for the first time.
