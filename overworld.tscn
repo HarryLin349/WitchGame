@@ -68,18 +68,6 @@ texture = ExtResource("2_pbn36")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-collision_layer = 2
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(-14, -11)
-sprite_frames = SubResource("SpriteFrames_gdxsc")
-frame_progress = 0.963878
-script = ExtResource("7_m36jt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CircleShape2D_wwplh")
-
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("4_owgup")
 
