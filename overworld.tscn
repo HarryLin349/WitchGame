@@ -1,62 +1,65 @@
-[gd_scene load_steps=15 format=3 uid="uid://4iu3mdvkpscm"]
+[gd_scene load_steps=16 format=3 uid="uid://4iu3mdvkpscm"]
 
 [ext_resource type="Script" path="res://summoning.gd" id="1_1m0hf"]
 [ext_resource type="Texture2D" uid="uid://4bsgtgabuxfv" path="res://Assets/floor.PNG" id="2_pbn36"]
 [ext_resource type="Script" path="res://Game Logic/spawner.gd" id="4_owgup"]
 [ext_resource type="Texture2D" uid="uid://d2os3b1p124qb" path="res://Assets/Witch.png" id="6_vxrn5"]
 [ext_resource type="Script" path="res://Game Logic/StatsUI.gd" id="7_2a7tk"]
-[ext_resource type="Script" path="res://WitchAnimation.gd" id="7_jeeai"]
 [ext_resource type="Texture2D" uid="uid://d2504p3orca8u" path="res://Assets/grass.PNG" id="7_k03s2"]
+[ext_resource type="Script" path="res://witchScript.gd" id="7_m36jt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2i78t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvkfo"]
 atlas = ExtResource("6_vxrn5")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8q36a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nkft"]
 atlas = ExtResource("6_vxrn5")
 region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b47mb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4liu1"]
 atlas = ExtResource("6_vxrn5")
 region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_faxp4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wclrq"]
 atlas = ExtResource("6_vxrn5")
 region = Rect2(384, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2wpyl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_brynw"]
 atlas = ExtResource("6_vxrn5")
 region = Rect2(512, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oliu8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hokc"]
 atlas = ExtResource("6_vxrn5")
 region = Rect2(640, 0, 128, 128)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_au5yq"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdxsc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2i78t")
+"texture": SubResource("AtlasTexture_tvkfo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8q36a")
+"texture": SubResource("AtlasTexture_3nkft")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b47mb")
+"texture": SubResource("AtlasTexture_4liu1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_faxp4")
+"texture": SubResource("AtlasTexture_wclrq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2wpyl")
+"texture": SubResource("AtlasTexture_brynw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oliu8")
+"texture": SubResource("AtlasTexture_3hokc")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wwplh"]
+radius = 22.0
 
 [node name="world" type="Node2D"]
 
@@ -87,13 +90,18 @@ offset_top = 20.0
 offset_right = 40.0
 offset_bottom = 43.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-16, 0)
-sprite_frames = SubResource("SpriteFrames_au5yq")
-frame_progress = 0.088779
-script = ExtResource("7_jeeai")
-
 [node name="Grass" type="Sprite2D" parent="."]
 texture = ExtResource("7_k03s2")
 
 [connection signal="timeout" from="Enemies/Timer" to="Enemies" method="_on_timer_timeout"]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(-14, -11)
+sprite_frames = SubResource("SpriteFrames_gdxsc")
+frame_progress = 0.963878
+script = ExtResource("7_m36jt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_wwplh")
