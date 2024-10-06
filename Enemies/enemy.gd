@@ -38,7 +38,6 @@ func move_towards_center(delta):
 	var collision = move_and_slide()
 	if collision:
 		var collided = get_last_slide_collision().get_collider()
-		print(collided)
 		if collided is Summon:
 			attackSummon(collided)
 
